@@ -17,6 +17,27 @@ const handleHomepage = (req,res) => {
     users:users,
   });
 }
+
+const handleName = (req,res) =>{
+  let firstName = req.query.firstName
+  
+  let user = users.find((item) => {
+    return item.name === firstName 
+  })
+  if(user !== undefined){
+    let friendsArray = user.friends.map((id) => {
+      return  users.find((user) =>{
+        return user._id === id
+      })
+    })
+    res.status(200).render(`pages/profile`, {
+      user:user,
+      friends: friendsArray
+    })
+  }else{
+    res.status(404).redirect('/signin')
+  }
+}
 // -----------------------------------------------------
 // server endpoints
 express()
@@ -27,6 +48,7 @@ express()
 
   // endpoints
   .get('/', handleHomepage)
+
   .get('/users/:id', (req,res) =>{
     let id = req.params.id
     let user = users.find((user) =>{
@@ -43,6 +65,12 @@ express()
       friends: friendsArray,
     })
   })
+
+  .get('/signin', (res,req) => {
+    req.render('pages/signin')
+  })
+
+  .get('/getname', handleName)
 
   // a catchall endpoint that will send the 404 message.
   .get('*', handleFourOhFour)
