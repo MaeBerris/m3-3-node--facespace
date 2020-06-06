@@ -12,6 +12,11 @@ const handleFourOhFour = (req, res) => {
   res.status(404).send("I couldn't find what you're looking for.");
 };
 
+const handleHomepage = (req,res) => {
+  res.status(200).render('pages/homepage', {
+    users:users,
+  });
+}
 // -----------------------------------------------------
 // server endpoints
 express()
@@ -21,6 +26,7 @@ express()
   .set('view engine', 'ejs')
 
   // endpoints
+  .get('/', handleHomepage)
 
   // a catchall endpoint that will send the 404 message.
   .get('*', handleFourOhFour)
