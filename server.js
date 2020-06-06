@@ -27,6 +27,10 @@ express()
 
   // endpoints
   .get('/', handleHomepage)
+  .get('/users/:id', (req,res) =>{
+    let id = req.params.id
+    res.send(id)
+  })
 
   // a catchall endpoint that will send the 404 message.
   .get('*', handleFourOhFour)
