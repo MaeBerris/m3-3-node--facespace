@@ -32,7 +32,16 @@ express()
     let user = users.find((user) =>{
       return user._id === id
     })
-    res.render('pages/profile',{user:user})
+    let friendsArray = user.friends.map((id) => {
+      return  users.find((user) =>{
+        return user._id === id
+      })
+    })
+    console.log(friendsArray)
+    res.render('pages/profile',{
+      user:user,
+      friends: friendsArray,
+    })
   })
 
   // a catchall endpoint that will send the 404 message.
