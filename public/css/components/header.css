@@ -4,7 +4,24 @@
   padding: 0 var(--page-horizontal-padding);
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
-.header h1 {
+.header a {
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+  line-height: 1em;
+  font-size: 36px;
+  margin-top: 3px;
+  text-decoration:none;
+}
+
+.header > .header__signIn {
+  font-size:22px;
   color: #fff;
 }
+
+.header p {
+  color: #fff;
+  font-family: 'Teko', sans-serif;
+}
+

@@ -26,7 +26,7 @@ const users = [
   {
     _id: '1013',
     name: 'Lana',
-    friends: ['1011', '1012', '1010'],
+    friends: [],
     avatarUrl: '/images/profile-pics/000005.jpg',
   },
   {

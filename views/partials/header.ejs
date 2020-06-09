@@ -7,5 +7,10 @@
 </head>
 <body>
   <header class="header">
-      <h1 class='site-title'>Facespace</h1>
+      <a class ='site-title' href='/'>Facespace</a>
+      <%if(currentUser.name !== undefined){ %>
+        <p>Hello <%= currentUser.name %></p>
+      <% }else{ %>
+        <a class='header__signIn' href='/signin'>Sign In</a>
+      <% } %>
   </header>

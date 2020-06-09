@@ -13,8 +13,10 @@ const handleFourOhFour = (req, res) => {
 };
 
 const handleHomepage = (req,res) => {
+  console.log(currentUser)
   res.status(200).render('pages/homepage', {
     users:users,
+    currentUser:currentUser,
   });
 }
 
@@ -24,7 +26,10 @@ const handleName = (req,res) =>{
   let user = users.find((item) => {
     return item.name === firstName 
   })
+
   if(user !== undefined){
+    currentUser = user;
+    console.log(currentUser)
     let friendsArray = user.friends.map((id) => {
       return  users.find((user) =>{
         return user._id === id
@@ -32,7 +37,8 @@ const handleName = (req,res) =>{
     })
     res.status(200).render(`pages/profile`, {
       user:user,
-      friends: friendsArray
+      friends: friendsArray,
+      currentUser: currentUser
     })
   }else{
     res.status(404).redirect('/signin')
@@ -63,11 +69,17 @@ express()
     res.render('pages/profile',{
       user:user,
       friends: friendsArray,
+      currentUser: currentUser
     })
   })
 
   .get('/signin', (res,req) => {
-    req.render('pages/signin')
+    if(currentUser.name != undefined){
+      req.redirect('/')
+    }else{
+      req.render('pages/signin',{
+      currentUser:currentUser
+    })}
   })
 
   .get('/getname', handleName)

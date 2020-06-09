@@ -9,7 +9,26 @@
 }
 .homepage__all--user {
   margin: 0 4px;
+  position:relative
 }
 .homepage__all--user img {
   width: 120px;
+  border: 1px solid var(--primary-color);
+  transition:0.2s
+}
+
+.homepage__all--user p {
+  background: rgba(255, 255, 255, 0.6);
+  color: #000;
+  position: absolute;
+  bottom: 9px;
+  left: 2px;
+  text-align: center;
+  font-weight: 700;
+  width: calc(100% - 4px);
+}
+
+
+.homepage__all--user img:hover {
+  border: 5px solid var(--primary-color);
 }
